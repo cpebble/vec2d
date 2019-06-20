@@ -63,7 +63,7 @@ class Vec2d():
     def __setstate__(self, state):
         """ Backwards compatibility """
         self.__dict__.update(state)
-        if not self.internal and state['x'] and state['y']:
+        if not "internal" in state and ('x' in state and 'y' in state):
             self.internal = np.array([state['x'], state['y']], dtype=np.float)
 
     def rotate(self, angle):
