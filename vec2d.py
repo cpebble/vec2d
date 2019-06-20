@@ -67,10 +67,10 @@ class Vec2d():
             self.internal = np.array([state['x'], state['y']], dtype=np.float)
 
     def rotate(self, angle):
-        """ Rotate a vector around the 0,0 Origin point """
+        """ Rotate a vector around the 0,0 Origin point(cw) """
         co, si = np.cos(angle), np.sin(angle)
-        P = np.matrix([[co, si], [-si, co]])
-        rotated = np.dot(P, self.internal)
+        P = np.array([[co, si], [-si, co]])
+        rotated = P @ self.internal.T
         # Transposed to avoid numpy bug in 1.16.4
         return Vec2d(rotated.T[0], rotated.T[1])
 
