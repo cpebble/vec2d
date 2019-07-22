@@ -66,6 +66,10 @@ class Vec2d():
         if not "internal" in state and ('x' in state and 'y' in state):
             self.internal = np.array([state['x'], state['y']], dtype=np.float)
 
+    def __iter__(self):
+        """You can unpack x, y and/or iterate them"""
+        return iter( (self.x, self.y) )
+
     def rotate(self, angle):
         """ Rotate a vector around the 0,0 Origin point(cw) """
         co, si = np.cos(angle), np.sin(angle)
